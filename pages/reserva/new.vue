@@ -72,11 +72,12 @@ export default {
         inicio: this.inicio,
         fim: this.fim,
       };
+      let self = this;
       await this.$axios
         .post("reserva", reserva)
         .then(function (response) {
           console.log(response);
-          // this.$router.push("/reserva");
+          self.$router.push("/reserva/list");
         })
         .catch(function (error) {
           console.log(error);

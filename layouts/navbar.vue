@@ -19,6 +19,7 @@
     <div class="container">
       <Nuxt />
     </div>
+    <br />
   </div>
 </template>
 

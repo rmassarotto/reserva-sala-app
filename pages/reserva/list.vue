@@ -6,30 +6,19 @@
       </div>
       <hr id="divisor" />
 
-      <h2>Minhas Reservas</h2>
+      <h2>Salas Reservadas</h2>
 
       <br />
+
       <b-list-group>
-        <b-list-group-item
-          class="d-flex justify-content-between align-items-center"
-        >
-          Cras justo odio
-          <b-badge variant="primary" pill>14</b-badge>
-        </b-list-group-item>
-
-        <b-list-group-item
-          class="d-flex justify-content-between align-items-center"
-        >
-          Dapibus ac facilisis in
-          <b-badge variant="primary" pill>2</b-badge>
-        </b-list-group-item>
-
-        <b-list-group-item
-          class="d-flex justify-content-between align-items-center"
-        >
-          Morbi leo risus
-          <b-badge variant="primary" pill>1</b-badge>
-        </b-list-group-item>
+        <div v-for="reserva of reservas" :key="reserva.id">
+          <b-list-group-item
+            class="d-flex justify-content-between align-items-center"
+          >
+            {{ reserva.salaId }} - {{ reserva.data }} | {{ reserva.inicio }} ->
+            {{ reserva.fim }} | {{ reserva.usuarioId }}
+          </b-list-group-item>
+        </div>
       </b-list-group>
     </b-container>
   </div>
