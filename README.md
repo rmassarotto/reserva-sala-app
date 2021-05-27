@@ -3,18 +3,18 @@
 ## Build Setup
 
 ```bash
-# install dependencies
+# Intalar dependencias
 $ yarn install
 
-# serve with hot reload at localhost:3000
+# Ambiente teste localhost:3000
 $ yarn dev
 
-# build for production and launch server
+# Build para produção
 $ yarn build
 $ yarn start
 
-# generate static project
+# Gerar projeto estático
 $ yarn generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+Mais detalhes em: [Nuxt.js docs](https://nuxtjs.org).
