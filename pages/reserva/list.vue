@@ -15,8 +15,8 @@
           <b-list-group-item
             class="d-flex justify-content-between align-items-center"
           >
-            {{ reserva.salaId }} - {{ reserva.data }} | {{ reserva.inicio }} ->
-            {{ reserva.fim }} | {{ reserva.usuarioId }}
+            {{ reserva.sala.nome }} | {{ reserva.inicio }} ->
+            {{ reserva.fim }} | {{ reserva.data }} | {{ reserva.usuario.nome }}
           </b-list-group-item>
         </div>
       </b-list-group>
@@ -34,7 +34,7 @@ export default {
   },
   async fetch() {
     const { data } = await this.$axios.get("reserva");
-    // console.log(data);
+    console.log(data);
     this.reservas = data;
   },
 };

@@ -6,7 +6,7 @@
 
       <b-collapse id="notesBar" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item href="/reserva/list">minhas reservas</b-nav-item>
+          <b-nav-item href="/reserva/list">reservas</b-nav-item>
           <b-nav-item-dropdown text="Nome usuário" right>
             <b-dropdown-item href="#" @click.prevent="logout"
               >Sair</b-dropdown-item

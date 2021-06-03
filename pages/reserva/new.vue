@@ -3,6 +3,10 @@
     <h1>Reserve sua Sala</h1>
     <p>Informe os dados abaixo para fazer uma reserva</p>
 
+    <b-alert v-model="conflito" variant="danger" dismissible>
+      Atenção! Já existe uma sala reservada entre os horarios definidos.
+    </b-alert>
+
     <b-form @submit.prevent="salvar">
       <b-form-group>
         <label>Sala</label>
@@ -57,6 +61,7 @@ export default {
       inicio: "",
       fim: "",
       salas: [],
+      conflito: false,
     };
   },
   async fetch() {
@@ -64,24 +69,41 @@ export default {
     this.salas = data;
   },
   methods: {
+    async verificaConflitoReserva(data, salaId, inicio, fim) {
+      const result = await this.$axios.get(
+        `reserva/${data}/${salaId}/${inicio}/${fim}`
+      );
+      return result.data;
+    },
     async salvar() {
-      let reserva = {
-        usuarioId: this.usuario,
-        salaId: this.sala,
-        data: this.data,
-        inicio: this.inicio,
-        fim: this.fim,
-      };
-      let self = this;
-      await this.$axios
-        .post("reserva", reserva)
-        .then(function (response) {
-          console.log(response);
-          self.$router.push("/reserva/list");
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      if (
+        await this.verificaConflitoReserva(
+          this.data,
+          this.sala,
+          this.inicio,
+          this.fim
+        )
+      ) {
+        this.conflito = true;
+      } else {
+        let reserva = {
+          usuarioId: this.usuario,
+          salaId: this.sala,
+          data: this.data,
+          inicio: this.inicio,
+          fim: this.fim,
+        };
+        let self = this;
+        await this.$axios
+          .post("reserva", reserva)
+          .then(function (response) {
+            console.log(response);
+            self.$router.push("/reserva/list");
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
     },
   },
 };
