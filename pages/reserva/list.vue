@@ -15,8 +15,15 @@
           <b-list-group-item
             class="d-flex justify-content-between align-items-center"
           >
-            {{ reserva.sala.nome }} | {{ reserva.inicio }} ->
+            {{ reserva.id }} - {{ reserva.sala.nome }} | {{ reserva.inicio }} ->
             {{ reserva.fim }} | {{ reserva.data }} | {{ reserva.usuario.nome }}
+            <a href="#"
+              ><b-icon
+                icon="trash"
+                variant="danger"
+                @click="remove(reserva.id)"
+              ></b-icon
+            ></a>
           </b-list-group-item>
         </div>
       </b-list-group>
@@ -34,8 +41,15 @@ export default {
   },
   async fetch() {
     const { data } = await this.$axios.get("reserva");
-    console.log(data);
     this.reservas = data;
+  },
+  methods: {
+    async remove(id) {
+      console.log("remover");
+      await this.$axios.delete(`reserva/${id}`);
+      const { data } = await this.$axios.get("reserva");
+      this.reservas = data;
+    },
   },
 };
 </script>
