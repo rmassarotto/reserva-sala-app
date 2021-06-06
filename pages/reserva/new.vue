@@ -53,9 +53,9 @@
 <script>
 export default {
   layout: "navbar",
+  middleware: "auth",
   data() {
     return {
-      usuario: 1,
       sala: null,
       data: null,
       inicio: "",
@@ -67,6 +67,11 @@ export default {
   async fetch() {
     const { data } = await this.$axios.get("sala");
     this.salas = data;
+  },
+  computed: {
+    usuario() {
+      return this.$store.state.auth.user;
+    },
   },
   methods: {
     async verificaConflitoReserva(data, salaId, inicio, fim) {
@@ -87,7 +92,7 @@ export default {
         this.conflito = true;
       } else {
         let reserva = {
-          usuarioId: this.usuario,
+          usuarioId: this.usuario.id,
           salaId: this.sala,
           data: this.data,
           inicio: this.inicio,

@@ -6,8 +6,8 @@
 
       <b-collapse id="notesBar" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item href="/reserva/list">reservas</b-nav-item>
-          <b-nav-item-dropdown text="Nome usuário" right>
+          <b-nav-item class="mr-3" href="/reserva/list">Reservasgit</b-nav-item>
+          <b-nav-item-dropdown :text="primeiroNome" right>
             <b-dropdown-item href="#" @click.prevent="logout"
               >Sair</b-dropdown-item
             >
@@ -26,21 +26,20 @@
 <script>
 export default {
   computed: {
-    // usuario() {
-    //   return this.$store.state.auth.user;
-    // },
-    // primeiroNome() {
-    //   if (this.usuario) {
-    //     const [nome] = this.usuario.nome.split(" ");
-    //     return nome;
-    //   }
-    // },
+    usuario() {
+      return this.$store.state.auth.user;
+    },
+    primeiroNome() {
+      if (this.usuario) {
+        const [nome] = this.usuario.nome.split(" ");
+        return nome;
+      }
+    },
   },
   methods: {
     async logout() {
-      // await this.$auth.logout();
-      // this.$router.push("/login");
-      console.log("Clicou em Logout");
+      await this.$auth.logout();
+      this.$router.push("/login");
     },
   },
 };
