@@ -6,7 +6,10 @@
 
       <b-collapse id="notesBar" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item class="mr-3" href="/reserva/list">Reservasgit</b-nav-item>
+          <b-nav-item v-if="usuario.tipo == `admin`" class="mr-3" href="/sala"
+            >Salas</b-nav-item
+          >
+          <b-nav-item class="mr-3" href="/reserva/list">Reservas</b-nav-item>
           <b-nav-item-dropdown :text="primeiroNome" right>
             <b-dropdown-item href="#" @click.prevent="logout"
               >Sair</b-dropdown-item

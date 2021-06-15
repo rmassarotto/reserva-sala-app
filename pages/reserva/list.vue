@@ -1,12 +1,16 @@
 <template>
   <div>
     <b-container>
-      <div class="text-center">
-        <b-button href="/reserva/new">Nova Reserva</b-button>
-      </div>
-      <hr id="divisor" />
-
-      <h2>Salas Reservadas</h2>
+      <b-row>
+        <b-col cols="9">
+          <h2>Salas Reservadas</h2>
+        </b-col>
+        <b-col class="text-right">
+          <b-button pill href="/reserva/new" variant="primary"
+            ><b-icon icon="clipboard-plus"></b-icon> Nova Reserva</b-button
+          >
+        </b-col>
+      </b-row>
 
       <br />
 
